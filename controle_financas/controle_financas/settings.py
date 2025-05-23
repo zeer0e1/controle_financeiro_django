@@ -20,12 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ejf@vhqh7yf@i$9hc@&4h)g(6yzmrgvur%whw+yqzu!*w&ibcw'
+SECRET_KEY = 'jyftb-L-KTnQ-gj24dUT3lfi4YRLCmZRl04o7jfHp2cTv_7LNwyx1xalKq5cXkh3wbY'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -72,11 +72,24 @@ WSGI_APPLICATION = 'controle_financas.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+"""
+
+# myproject/settings.py
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'seu_nome_de_banco_de_dados_aqui', # Ex: 'seu_usuario$nome_do_seu_app'
+        'USER': 'seu_usuario_aqui',
+        'PASSWORD': 'sua_senha_do_banco_de_dados_aqui',
+        'HOST': 'seu_hostname_do_mysql_aqui', # Ex: 'seu_usuario.mysql.pythonanywhere-services.com'
+        'PORT': '', # Deixe vazio
     }
 }
 
@@ -115,7 +128,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root') # Onde o collectstatic vai colocar os arquivos
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
